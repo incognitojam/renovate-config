@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Merge non-major updates once the repository's checks pass. Majors, 0.x, prerelease and Python minor updates wait for review.",
+  "packageRules": [
+    {
+      "description": "Merge minor, patch and digest updates on their own",
+      "matchUpdateTypes": ["minor", "patch", "pin", "pinDigest", "digest"],
+      "automerge": true
+    },
+    {
+      "description": "Before 1.0, a minor update may break the API. The pattern also covers ranges such as ^0.32.1 and Go pseudo-versions such as v0.2608.1-0.20260911...",
+      "matchDatasources": ["npm", "pypi", "go"],
+      "matchCurrentVersion": "/^[\\^~>=< v]*0\\./",
+      "automerge": false
+    },
+    {
+      "description": "Prerelease versions may break between releases",
+      "matchDatasources": ["npm"],
+      "matchCurrentVersion": "/-/",
+      "automerge": false
+    },
+    {
+      "description": "Python minor releases remove deprecated APIs",
+      "matchDepNames": ["python"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": false
+    }
+  ]
+}

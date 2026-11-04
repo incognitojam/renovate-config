@@ -1,0 +1,14 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Base Renovate config for incognitojam, yngatech and ldn-house projects",
+  "extends": ["config:recommended"],
+  "timezone": "Europe/London",
+  "internalChecksFilter": "strict",
+  "packageRules": [
+    {
+      "description": "Wait three days before proposing a new npm or PyPI release, so a compromised or yanked release can be caught first",
+      "matchDatasources": ["npm", "pypi"],
+      "minimumReleaseAge": "3 days"
+    }
+  ]
+}

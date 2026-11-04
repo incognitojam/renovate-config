@@ -1,0 +1,16 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Scoped Commits titles: `deps: update ...` for dependencies and `ci: update ...` for workflow actions",
+  "semanticCommits": "enabled",
+  "semanticCommitScope": null,
+  "packageRules": [
+    {
+      "matchPackageNames": ["*"],
+      "semanticCommitType": "deps"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "semanticCommitType": "ci"
+    }
+  ]
+}

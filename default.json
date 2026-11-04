@@ -1,14 +1,74 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": "Base Renovate config for incognitojam, yngatech and ldn-house projects",
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended"
+  ],
   "timezone": "Europe/London",
   "internalChecksFilter": "strict",
   "packageRules": [
     {
       "description": "Wait three days before proposing a new npm or PyPI release, so a compromised or yanked release can be caught first",
-      "matchDatasources": ["npm", "pypi"],
+      "matchDatasources": [
+        "npm",
+        "pypi"
+      ],
       "minimumReleaseAge": "3 days"
+    },
+    {
+      "description": "Solid 2.0's prereleases only work at matching versions",
+      "matchPackageNames": [
+        "solid-js",
+        "@solidjs/web",
+        "@solidjs/signals",
+        "@solidjs/vite-plugin"
+      ],
+      "groupName": "Solid"
+    },
+    {
+      "description": "Effect's packages are released together and depend on matching versions. @effect/tsgo is tooling with its own releases",
+      "matchPackageNames": [
+        "effect",
+        "@effect/**",
+        "!@effect/tsgo"
+      ],
+      "groupName": "Effect"
+    },
+    {
+      "description": "The Playwright Docker image's browsers must match the Playwright npm packages",
+      "matchPackageNames": [
+        "@playwright/test",
+        "playwright",
+        "playwright-core",
+        "mcr.microsoft.com/playwright"
+      ],
+      "groupName": "Playwright"
+    },
+    {
+      "description": "drizzle-kit generates migrations for the drizzle-orm version it ships with",
+      "matchPackageNames": [
+        "drizzle-orm",
+        "drizzle-kit"
+      ],
+      "groupName": "Drizzle"
+    },
+    {
+      "description": "Released together from cloudflare/workers-sdk. miniflare is left out because its stable releases stopped, and @cloudflare/workers-types comes from workerd",
+      "matchPackageNames": [
+        "wrangler",
+        "@cloudflare/vite-plugin",
+        "@cloudflare/vitest-plugin",
+        "@cloudflare/vitest-pool-workers"
+      ],
+      "groupName": "Cloudflare Workers SDK"
+    },
+    {
+      "description": "Keep packageManager, setup-bun and @types/bun on the same Bun release",
+      "matchDepNames": [
+        "bun",
+        "@types/bun"
+      ],
+      "groupName": "Bun"
     }
   ]
 }

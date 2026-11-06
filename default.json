@@ -19,6 +19,21 @@
       "minimumReleaseAge": "3 days"
     },
     {
+      "description": "Apply the same wait to GitHub Actions, whose tags can be hijacked or moved",
+      "matchDatasources": [
+        "github-tags"
+      ],
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "description": "Apply the same wait to Docker images. Not every registry reports release dates, and without timestamp-optional an image from one of those would never update",
+      "matchDatasources": [
+        "docker"
+      ],
+      "minimumReleaseAge": "3 days",
+      "minimumReleaseAgeBehaviour": "timestamp-optional"
+    },
+    {
       "description": "Solid 2.0's prereleases only work at matching versions",
       "matchPackageNames": [
         "solid-js",

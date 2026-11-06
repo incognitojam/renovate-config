@@ -6,6 +6,9 @@
   ],
   "timezone": "Europe/London",
   "internalChecksFilter": "strict",
+  "assignees": [
+    "incognitojam"
+  ],
   "packageRules": [
     {
       "description": "Wait three days before proposing a new npm or PyPI release, so a compromised or yanked release can be caught first",

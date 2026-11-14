@@ -1,6 +1,6 @@
 # Agent instructions
 
-This repository holds shared Renovate presets. Each repository that uses them extends them from its own `renovate.json`, for example `github>incognitojam/renovate-config:automerge`. They are read straight from `main` by the hosted [Mend Renovate app](https://github.com/apps/renovate), so every push to `main` changes Renovate's behaviour in all of those repositories on their next run. There is no release step and no PR check to catch a mistake, so check every change before pushing.
+This repository holds shared Renovate presets. Each repository that uses them extends them from its own `renovate.json`, for example `github>incognitojam/renovate-config:automerge`. They are read straight from `main` by the hosted [Mend Renovate app](https://github.com/apps/renovate), so every merge to `main` changes Renovate's behaviour in all of those repositories on their next run. There is no release step. Changes land through a pull request, and CI validates the presets, but the validator only catches invalid configuration, not a rule that does the wrong thing, so check what every change does before opening the pull request.
 
 This repository is public, but some repositories that use these presets are private. Never name a private repository, its files or its setup here, in commit messages, or in rule descriptions. To find the repositories that use the presets, read each repository's `renovate.json`. GitHub code search misses repositories it hasn't indexed. This takes about a minute and includes private repositories you can access:
 
@@ -15,13 +15,13 @@ done
 
 ## Checking a change
 
-Validate every preset before committing:
+Validate every preset before committing. CI runs the same command on every pull request:
 
 ```sh
-npx --yes --package renovate -- renovate-config-validator --strict default.json automerge.json scoped.json
+npx --yes --package renovate -- renovate-config-validator --strict --no-global *.json
 ```
 
-For a change to what Renovate does (automerge, grouping, schedules, titles), also dry-run it against a repository that uses the presets, before pushing:
+For a change to what Renovate does (automerge, grouping, schedules, titles), also dry-run it against a repository that uses the presets, before opening the pull request:
 
 1. Serve this directory locally, for example `python3 -m http.server 8765 --bind 127.0.0.1`.
 2. In a clone of that repository, point its `renovate.json` at the local presets: replace `github>incognitojam/renovate-config` with `http://127.0.0.1:8765/default.json` and `github>incognitojam/renovate-config:<name>` with `http://127.0.0.1:8765/<name>.json`. Restore the file afterwards.

@@ -34,6 +34,18 @@
       "minimumReleaseAgeBehaviour": "timestamp-optional"
     },
     {
+      "description": "The bun manager doesn't read bun.lock, so the default update-lockfile strategy drops every update that a caret or tilde range already allows. Bump the range instead. Peer dependencies keep the default, which widens them",
+      "matchManagers": [
+        "bun"
+      ],
+      "matchDepTypes": [
+        "dependencies",
+        "devDependencies",
+        "optionalDependencies"
+      ],
+      "rangeStrategy": "bump"
+    },
+    {
       "description": "Solid 2.0's prereleases only work at matching versions",
       "matchPackageNames": [
         "solid-js",

@@ -83,6 +83,14 @@
       "groupName": "Drizzle"
     },
     {
+      "description": "The AI SDK's packages pin exact versions of the shared @ai-sdk/provider packages, so updating one alone installs a second copy whose types don't match the first",
+      "matchPackageNames": [
+        "ai",
+        "@ai-sdk/**"
+      ],
+      "groupName": "AI SDK"
+    },
+    {
       "description": "Released together from cloudflare/workers-sdk. miniflare is left out because its stable releases stopped, and @cloudflare/workers-types comes from workerd",
       "matchPackageNames": [
         "wrangler",

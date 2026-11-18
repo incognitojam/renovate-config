@@ -36,4 +36,5 @@ If the repository is already up to date, there may be nothing for a new rule to 
 - When adding or changing a preset or group, update the table in `README.md`.
 - Put a rule here only if it holds wherever its packages appear. A rule tied to one repository's files belongs in that repository's `renovate.json`, such as a custom manager for a version pinned inside one repository's Dockerfile.
 - `automerge.json` must never merge major, 0.x or prerelease updates, or Python minor releases. Only extend it in repositories whose pull requests run CI, since automerge waits for those checks.
+- A repository with a `bun.lock` also needs `[install] minimumReleaseAge = 259200` in a `bunfig.toml` beside each lockfile, as the README explains. Renovate's `bun install` ignores the presets' `minimumReleaseAge`, and a preset can't add the file. When a Bun repository starts using the presets, add it there.
 - Groups are for packages that have to move together, not just to reduce the number of PRs. `miniflare` stays out of the Cloudflare Workers SDK group because a repository pinning one of its prereleases would stop the whole group from automerging.
